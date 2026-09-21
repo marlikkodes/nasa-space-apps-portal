@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D 55 Cancri e</title>
+    <link rel="stylesheet" href="exo.css" />
+    <link rel="icon" type="image/png" href="../Media/exo.png" />
+  </head>
+  <body>
+    <button class="redirect">
+      <a href="../SolarPlanets HTML/SolarSystem.html">Back to Solar</a>
+    </button>
+    <button class="redirect">
+      <a href="../SolarPlanets HTML/SolarSystem.html">Back to Solar</a>
+    </button>
+    <div class="hover-box" id="hoverBox">
+      <!-- 55 Cancri e -->
+      <h3>Planet Name: 55 Cancri e</h3>
+      <p>
+        Distance from the Sun: 41 light-years
+        <br />
+        Mass: 8.63 x Earth's mass
+        <br />
+        Radius: 2 x Earth's radius
+        <br />
+        Moons: 0
+        <br />
+        55 Cancri e is a rocky exoplanet orbiting very close to its host star.
+        It is extremely hot with surface temperatures reaching over 2000°C.
+      </p>
+    </div>
+    <div class="info-point"></div>
+    <div class="loading-container" id="loadingContainer">
+      <div class="loading-bar" id="loadingBar"></div>
+      <div class="loading-text" id="loadingText">0%</div>
+    </div>
+    <div class="box">
+      <div id="instructions">
+        <h3>Current: 55_Cancri_e637</h3>
+        <h5>Instructions:</h5>
+        <h5>
+          1) Hold and move around to explore the 360 view of the planet (For
+          desktops)
+        </h5>
+        <h5>2) Tap on the model to get info about the planet (For mobiles)</h5>
+      </div>
+
+      <div class="center" id="navButtons">
+        <a href="WASP-76b.html">&#8249;</a>
+        <button id="jumpButton">JUMP</button>
+        <a href="GJ1214b.html">&#8250;</a>
+      </div>
+
+      <div class="dropup-items" id="dropupItems" style="display: none">
+        <h4>Planets List:</h4>
+        <a href="55Cancri-e.html">55_cancri_e637</a>
+        <a href="GJ1214b.html">GJ1214b</a>
+        <a href="Gliese1132b.html">Gliese1132b</a>
+        <a href="HD189733b.html">HD189733b</a>
+        <a href="Kepler-138c.html">Kepler-138</a>
+        <a href="Kepler10b.html">Kepler10b</a>
+        <a href="OGLE-2016-BLG-1928.html">OGLE-2016-BLG-1928</a>
+        <a href="PegasiB.html">51_pegasi_b</a>
+        <a href="TOI-1452b.html">TOI-1452</a>
+        <a href="WASP-76b.html">WASP-76b</a>
+        <h2 id="backButton">&#8249;--------</h2>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+      document
+        .getElementById("jumpButton")
+        .addEventListener("click", function () {
+          // Hide instructions and navigation buttons
+          document.getElementById("instructions").style.display = "none";
+          document.getElementById("navButtons").style.display = "none";
+
+          // Show the dropup-items with the planet list
+          document.getElementById("dropupItems").style.display = "block";
+        });
+
+      // Handle Back button click to return to instructions
+      document
+        .getElementById("backButton")
+        .addEventListener("click", function () {
+          // Show instructions and navigation buttons again
+          document.getElementById("instructions").style.display = "block";
+          document.getElementById("navButtons").style.display = "flex";
+
+          // Hide the dropup-items
+          document.getElementById("dropupItems").style.display = "none";
+        });
+
+      // Scene setup
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        5000 // Far clipping plane increased to allow zooming out more
+      );
+      const renderer = new THREE.WebGLRenderer({ antialias: true }); // Enable anti-aliasing
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Orbit Controls with Free Movement
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.screenSpacePanning = false;
+
+      // Ambient Light
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Lower ambient light for better visibility of the model
+      scene.add(ambientLight);
+
+      // Directional Light
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5); // Increased light intensity
+      directionalLight.position.set(5, 10, 7);
+      directionalLight.castShadow = true;
+      scene.add(directionalLight);
+
+      const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.5);
+      directionalLight2.position.set(-5, 10, -7);
+      scene.add(directionalLight2);
+
+      // Add stars using small spheres
+      const starGeometry = new THREE.SphereGeometry(0.5, 8, 8); // Smaller sphere geometry
+      const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+      for (let i = 0; i < 4445; i++) {
+        // Reduced density by 1/3rd
+        const star = new THREE.Mesh(starGeometry, starMaterial);
+        star.position.set(
+          (Math.random() - 0.5) * 2000,
+          (Math.random() - 0.5) * 2000,
+          (Math.random() - 0.5) * 2000
+        );
+        scene.add(star);
+      }
+
+      // Add planets with softer colors and shiny effects
+      const planetColors = [
+        0x87cefa, // Light blue
+        0xffb6c1, // Light pink
+        0xadd8e6, // Light blue
+        0xffc0cb, // Pink
+        0xb0e0e6, // Powder blue
+        0xd8bfd8, // Thistle
+        0xe6e6fa, // Lavender
+        0xf0e68c, // Khaki
+        0xffdab9, // Peach puff
+        0xffefd5, // Papaya whip
+        0xdda0dd, // Plum
+        0x98fb98, // Pale green
+        0xafeeee, // Pale turquoise
+        0xdb7093, // Pale violet red
+        0xffe4e1, // Misty rose
+        0xffe4b5, // Moccasin
+        0xffdead, // Navajo white
+        0xf5deb3, // Wheat
+        0xfffacd, // Lemon chiffon
+        0xe0ffff, // Light cyan
+      ];
+      const sphereGeometry = new THREE.SphereGeometry(5, 32, 32);
+
+      for (let i = 0; i < 20; i++) {
+        // 20 planets
+        const color = planetColors[i % planetColors.length];
+        const sphereMaterial = new THREE.MeshPhongMaterial({
+          color: color,
+          shininess: 100,
+        });
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        sphere.position.set(
+          (Math.random() - 0.5) * 5000, // Increased distance
+          (Math.random() - 0.5) * 5000,
+          (Math.random() - 0.5) * 5000
+        );
+        scene.add(sphere);
+      }
+
+      // Add suns with different colors and larger sizes
+      const sunColors = [0xffd700, 0xffa500, 0xff4500];
+      const sunGeometry = new THREE.SphereGeometry(10, 32, 32);
+
+      for (let i = 0; i < sunColors.length; i++) {
+        const sunMaterial = new THREE.MeshPhongMaterial({
+          color: sunColors[i],
+          emissive: sunColors[i],
+          emissiveIntensity: 1,
+          shininess: 100,
+        });
+        const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+        sun.position.set(
+          (Math.random() - 0.5) * 6000, // Increased distance
+          (Math.random() - 0.5) * 6000,
+          (Math.random() - 0.5) * 6000
+        );
+        scene.add(sun);
+      }
+
+      // Load GLTF models
+      // Load GLTF models
+      const loader = new THREE.GLTFLoader();
+      let model;
+      loader.load(
+        "../3D Models/55_cancri_e637/scene.gltf", // Use URL-encoded path for spaces and special characters
+        function (gltf) {
+          model = gltf.scene;
+          scene.add(model);
+
+          // Hide the loading container once the model is loaded
+          document.getElementById("loadingContainer").style.display = "none";
+
+          // Load the larger sphere model after the Earth model is loaded
+          loader.load(
+            "../3D Models/galaxy_sphere/scene.gltf", // Replace with the path to your larger sphere model
+            function (gltf) {
+              const largeSphere = gltf.scene;
+              largeSphere.scale.set(1500, 1500, 1500);
+              model.scale.set(10, 10, 10); // Scale the larger sphere to the desired size
+              scene.add(largeSphere);
+
+              // Restrict the camera zoom-out movement
+              controls.maxDistance = 1000;
+            },
+            undefined,
+            function (error) {
+              console.error(error);
+            }
+          );
+        },
+        function (xhr) {
+          // Update the loading bar and text based on the loading progress
+          const total = xhr.total || 1000000; // Fallback to a large number if total is not available
+          const percentComplete = (xhr.loaded / total) * 100;
+          const loadingBar = document.getElementById("loadingBar");
+          const loadingText = document.getElementById("loadingText");
+          loadingBar.style.width = `${percentComplete}%`;
+          loadingText.textContent = `${Math.round(percentComplete)}%`;
+        },
+        function (error) {
+          console.error(error);
+        }
+      );
+
+      // Camera positioning
+      camera.position.set(30, 10, 30); // Adjusted the camera position to a closer view
+      camera.lookAt(0, 0, 0); // Ensure the camera looks at the model
+
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        if (model) {
+          model.rotation.y += 0.0025; // Rotate the model around its Y-axis (increased speed by 20%)
+        }
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      });
+
+      // Handle hover events
+      const hoverBox = document.getElementById("hoverBox");
+      const infoPoint = document.querySelector(".info-point");
+
+      infoPoint.addEventListener("mouseenter", function () {
+        hoverBox.classList.add("active"); // Show the hover box
+      });
+
+      infoPoint.addEventListener("mouseleave", function () {
+        hoverBox.classList.remove("active"); // Hide the hover box
+      });
+
+      // Update the hover box position
+      function updateHoverBoxPosition(event) {
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+        hoverBox.style.left = `${mouseX + 20}px`; // Position with some offset
+        hoverBox.style.top = `${mouseY - 20}px`; // Position with some offset
+      }
+
+      // Show the hover box when clicking on the info point
+      infoPoint.addEventListener("click", function () {
+        hoverBox.classList.toggle("active"); // Toggle the hover box
+      });
+
+      // Handle click events
+      document.addEventListener("click", function (event) {
+        // Check if the click was outside the hover box and info point
+        const isClickInsideInfoPoint = infoPoint.contains(event.target);
+        const isClickInsideHoverBox = hoverBox.contains(event.target);
+
+        if (!isClickInsideInfoPoint && !isClickInsideHoverBox) {
+          hoverBox.classList.remove("active"); // Hide the hover box
+        }
+      });
+
+      // Add mouse move event listener to update hover box position
+      window.addEventListener("mousemove", updateHoverBoxPosition);
+    </script>
+  </body>
+</html>
+
+<!-- Developed by Arji Jethin & Aluru Bala Karthikeya -->

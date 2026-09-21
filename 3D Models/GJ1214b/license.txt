@@ -1,0 +1,11 @@
+Model Information:
+* title:	Earthlike Exoplanet Surface
+* source:	https://sketchfab.com/3d-models/earthlike-exoplanet-surface-29f009280caf40b6b1c0f121253ee8f5
+* author:	OverGeared (https://sketchfab.com/OverGeared)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Earthlike Exoplanet Surface" (https://sketchfab.com/3d-models/earthlike-exoplanet-surface-29f009280caf40b6b1c0f121253ee8f5) by OverGeared (https://sketchfab.com/OverGeared) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

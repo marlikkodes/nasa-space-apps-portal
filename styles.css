@@ -1,0 +1,369 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+:root {
+  --primary-color: #000000;
+  --secondary-color: #0b3d91;
+  --tertiary-color: #fc3d21;
+  --quaternary-color: #ffffff;
+  --base-font-weight: 400;
+  --high-font-weight: 800;
+  --mid-font-weight: 600;
+  --round-borders: 20px;
+  --small-font: 2vh;
+  --mid-font: 3.5vh;
+  --big-font: 4vh;
+  --imp-font: 4.5vh;
+  --button-padding: 20px;
+  --margins-side: 10px;
+  --new-section-margin: 25px;
+  --font-one: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-one);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-one);
+  font-weight: var(--mid-font-weight);
+  color: var(--quaternary-color);
+  background-image: linear-gradient(
+    to right bottom,
+    #000000,
+    #230f1b,
+    #371739,
+    #3c2662,
+    #0b3d91
+  );
+  background-repeat: no-repeat;
+}
+
+.nav-bar {
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--quaternary-color);
+  padding: var(--button-padding) var(--margins-side);
+  margin: 0px 0px 0px 20px;
+}
+
+.nav-bar ul {
+  display: flex;
+  list-style-type: none;
+  gap: var(--margins-side);
+  padding: 0;
+  margin: 0;
+}
+
+.nav-bar ul li {
+  margin: 0 var(--margins-side);
+  font-size: var(--small-font);
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    padding: var(--button-padding);
+  }
+
+  .nav-bar ul {
+    display: none;
+    width: 100%;
+  }
+
+  .introduction {
+    font-size: 5vh;
+  }
+
+  .nav-bar ul li {
+    font-size: var(--small-font);
+    text-align: center;
+    padding: var(--button-padding) 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-bar ul {
+    gap: 5px;
+  }
+
+  .nav-bar ul li {
+    font-size: var(--small-font);
+  }
+}
+
+@media (min-width: 769px) {
+  header {
+    padding: 100px;
+    font-size: 5vh;
+  }
+
+  .nav-bar ul li:last-child {
+    margin-right: 50px;
+  }
+  .nav-bar h3 {
+    margin-left: 30px;
+  }
+
+  .introduction {
+    font-size: 6vh;
+  }
+
+  .fa-bars {
+    display: none;
+  }
+}
+
+.side-spacing {
+  margin-left: 20px;
+  padding: 10px var(--button-padding);
+  color: var(--quaternary-color);
+}
+
+form {
+  margin: 0 40px;
+  font-family: var(--font-one);
+  display: flex;
+  justify-content: center;
+}
+
+fieldset {
+  width: 100%;
+  max-width: 300px;
+  border-radius: var(--round-borders);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(3px);
+  margin-bottom: 100px;
+}
+
+legend {
+  padding: 5px 10px;
+  font-size: 2.5vh;
+  margin-left: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 2px solid var(--quaternary-color);
+  border-right: 2px solid var(--quaternary-color);
+  border-radius: 15px;
+}
+
+.form-group {
+  margin: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--quaternary-color);
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: var(--font-one);
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  background-color: var(--tertiary-color);
+  text-decoration: none;
+  border: none;
+  border-radius: 15px;
+  font-family: var(--font-one);
+  cursor: pointer;
+  transition: 0.4s;
+  color: white;
+}
+
+button > a {
+  text-decoration: none;
+  color: var(--quaternary-color);
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+  border-left: 2px solid var(--quaternary-color);
+  border-right: 2px solid var(--quaternary-color);
+  color: white;
+}
+
+p {
+  font-size: 2vh;
+  margin: var(--margins-side);
+}
+
+p a {
+  color: var(--quaternary-color);
+  text-decoration: underline;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.about:hover .about-text {
+  display: block;
+}
+
+.about-text {
+  display: none;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: 20px;
+  }
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+/* General styling for the page */
+body {
+  margin: 0;
+  font-family: var(--font-one);
+}
+
+/* Styling the Earth container */
+.earth {
+  width: 100%;
+  height: 600px; /* Adjust the height as per your needs */
+  margin: 0 auto; /* Centering the container horizontally */
+  position: relative;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0
+  ); /* Ensure the background is transparent */
+}
+
+/* Ensuring the canvas fits inside the earth container */
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Other form-related styling (optional) */
+.sign-up-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+
+.earth {
+  width: 100%;
+  height: 500px; 
+  position: relative;
+}
+
+.form,
+.earth {
+  flex: 1 1 45%; 
+}
+
+.earth {
+  width: 400px; 
+  max-width: 100%;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .form,
+  .earth {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .earth {
+    height: 400px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .earth {
+    height: 300px; /
+  }
+}
+
+
+.hover-box {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  color: white;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Slightly rounded corners */
+  padding: 10px 30px; /* Padding around the text */
+  max-width: 250px;
+  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.2); /* Shadow for a slight 3D effect */
+  display: none; /* Initially hidden */
+  z-index: 100; /* Ensure it appears above other elements */
+  opacity: 0; /* Start with 0 opacity for animation */
+  transform: translateY(-40px); /* Initial position for animation */
+  transition: opacity 3s ease, transform 0.3s ease;
+}
+
+.hover-box.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+ul li a {
+  color: white;
+}
+
+/* Developed by Arji Jethin & Aluru Bala Karthikeya */
